@@ -39,7 +39,6 @@ import org.apache.http.conn.scheme.PlainSocketFactory;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.conn.ssl.AllowAllHostnameVerifier;
-import org.apache.http.conn.ssl.BrowserCompatHostnameVerifier;
 import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -219,7 +218,7 @@ public class HttpProtocolHandler implements IProtocolHandler {
             };
             sslContext.init(null, new TrustManager[] { trustManager }, null);
             X509HostnameVerifier hostnameVerifier = new AllowAllHostnameVerifier();
-            hostnameVerifier = new BrowserCompatHostnameVerifier();
+            // hostnameVerifier = new BrowserCompatHostnameVerifier();
             SSLSocketFactory ssf = new SSLSocketFactory(
                 sslContext,
                 hostnameVerifier);
