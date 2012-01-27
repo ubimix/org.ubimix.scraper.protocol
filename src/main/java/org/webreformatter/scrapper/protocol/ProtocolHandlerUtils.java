@@ -5,7 +5,6 @@ package org.webreformatter.scrapper.protocol;
 
 import java.io.IOException;
 
-
 /**
  * @author kotelnikov
  */
