@@ -54,8 +54,7 @@ public class WrfRepositoryProtocolHandler implements IProtocolHandler {
                 .getAdapter(CachedResourceAdapter.class);
             targetPropertyAdapter.copyPropertiesFrom(source);
             targetPropertyAdapter.setStatusCode(status.getStatusCode());
-            targetPropertyAdapter.touch();
-
+            targetPropertyAdapter.setLastModified(System.currentTimeMillis());
             return status;
         } catch (IOException e) {
             return HttpStatusCode.STATUS_505;

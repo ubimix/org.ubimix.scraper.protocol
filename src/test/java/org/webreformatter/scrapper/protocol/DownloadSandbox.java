@@ -37,7 +37,7 @@ public class DownloadSandbox {
         WrfResourceRepository resourceRepository = new WrfResourceRepository(
             adapters,
             rootDir);
-        WrfRepositoryUtils.registerAdapters(resourceRepository);
+        WrfRepositoryUtils.registerDefaultResourceAdapters(adapters);
         return resourceRepository;
     }
 

@@ -369,8 +369,16 @@ public class HttpStatusCode {
         return ResponseClass.CLASS_2xx.equals(getGroup());
     }
 
+    public boolean isOkOrNotModified() {
+        return isOk() || notModified();
+    }
+
     public boolean isServerError() {
         return ResponseClass.CLASS_5xx.equals(getGroup());
+    }
+
+    public boolean notModified() {
+        return HttpStatusCode.STATUS_304.getStatusCode() == getStatusCode();
     }
 
     @Override

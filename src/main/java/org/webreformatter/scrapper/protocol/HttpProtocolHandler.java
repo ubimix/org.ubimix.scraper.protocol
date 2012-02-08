@@ -65,11 +65,21 @@ public class HttpProtocolHandler implements IProtocolHandler {
 
     private SchemeRegistry fSchemeRegistry = new SchemeRegistry();
 
+    private boolean fSSLActivated;
+
     /**
      * @throws IOException
      */
-    public HttpProtocolHandler() throws IOException {
-        initSSL();
+    public HttpProtocolHandler() {
+    }
+
+    private void checkSSL() throws IOException {
+        synchronized (HttpProtocolHandler.class) {
+            if (!fSSLActivated) {
+                initSSL();
+                fSSLActivated = true;
+            }
+        }
     }
 
     private synchronized DefaultHttpClient getClient() throws IOException {
@@ -95,6 +105,7 @@ public class HttpProtocolHandler implements IProtocolHandler {
         String password,
         IWrfResource resource) {
         try {
+            checkSSL();
             Uri.Builder pathBuilder = new Uri.Builder();
             pathBuilder.setFullPath(url.getPath());
             pathBuilder.setQuery(url.getQuery());
@@ -128,19 +139,18 @@ public class HttpProtocolHandler implements IProtocolHandler {
                 String etag = properties.getProperty("ETag");
                 if (etag != null) {
                     httpRequest.setHeader("If-None-Match", etag);
-                    String lastModified = properties
-                        .getProperty("Last-Modified");
-                    if (lastModified != null) {
-                        httpRequest
-                            .setHeader("If-Modified-Since", lastModified);
-                    }
                 }
-
+                String lastModified = properties.getProperty("Last-Modified");
+                if (lastModified != null) {
+                    httpRequest.setHeader("If-Modified-Since", lastModified);
+                }
                 HttpResponse httpResponse = httpClient.execute(
                     host,
                     httpRequest);
                 StatusLine statusLine = httpResponse.getStatusLine();
                 int code = statusLine.getStatusCode();
+                HttpStatusCode status = HttpStatusCode.getStatusCode(code);
+
                 Map<String, String> map = new HashMap<String, String>();
                 for (Header header : httpResponse.getAllHeaders()) {
                     String key = header.getName();
@@ -148,18 +158,10 @@ public class HttpProtocolHandler implements IProtocolHandler {
                     map.put(key, value);
                 }
                 // FIXME: externalize the "StatusCode" key
-                map.put("StatusCode", code + "");
+                map.put("StatusCode", status.getStatusCode() + "");
                 properties.setProperties(map);
 
-                boolean ok = false;
-                if (code != 200) {
-                    if (etag != null && code == 304 /* Not modified */) {
-                        log.fine("304: Not modified. URL: " + url);
-                        ok = true;
-                    } else {
-                        log.fine(code + ": URL: " + url);
-                    }
-                } else {
+                if (status.isOk()) {
                     HttpEntity entity = httpResponse.getEntity();
                     InputStream input = entity.getContent();
                     try {
@@ -174,14 +176,14 @@ public class HttpProtocolHandler implements IProtocolHandler {
                     } finally {
                         input.close();
                     }
-                    ok = true;
                 }
-                if (ok) {
-                    CachedResourceAdapter cacheAdapter = resource
-                        .getAdapter(CachedResourceAdapter.class);
-                    cacheAdapter.touch();
+                CachedResourceAdapter cacheAdapter = resource
+                    .getAdapter(CachedResourceAdapter.class);
+                cacheAdapter.updateLastLoaded();
+                if (status.isOkOrNotModified()) {
+                    cacheAdapter.checkLastModified();
                 }
-                return HttpStatusCode.getStatusCode(code);
+                return status;
             } finally {
                 releaseClient(httpClient);
             }
