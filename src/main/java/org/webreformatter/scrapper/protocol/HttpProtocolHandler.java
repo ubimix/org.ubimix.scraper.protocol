@@ -150,17 +150,6 @@ public class HttpProtocolHandler implements IProtocolHandler {
                 StatusLine statusLine = httpResponse.getStatusLine();
                 int code = statusLine.getStatusCode();
                 HttpStatusCode status = HttpStatusCode.getStatusCode(code);
-
-                Map<String, String> map = new HashMap<String, String>();
-                for (Header header : httpResponse.getAllHeaders()) {
-                    String key = header.getName();
-                    String value = header.getValue();
-                    map.put(key, value);
-                }
-                // FIXME: externalize the "StatusCode" key
-                map.put("StatusCode", status.getStatusCode() + "");
-                properties.setProperties(map);
-
                 if (status.isOk()) {
                     HttpEntity entity = httpResponse.getEntity();
                     InputStream input = entity.getContent();
@@ -176,6 +165,17 @@ public class HttpProtocolHandler implements IProtocolHandler {
                     } finally {
                         input.close();
                     }
+                    // Update header properties only if the content was changed.
+                    Map<String, String> map = new HashMap<String, String>();
+                    for (Header header : httpResponse.getAllHeaders()) {
+                        String key = header.getName();
+                        String value = header.getValue();
+                        map.put(key, value);
+                    }
+                    // FIXME: externalize the "StatusCode" key
+                    map.put("StatusCode", status.getStatusCode() + "");
+                    properties.setProperties(map);
+
                 }
                 CachedResourceAdapter cacheAdapter = resource
                     .getAdapter(CachedResourceAdapter.class);
