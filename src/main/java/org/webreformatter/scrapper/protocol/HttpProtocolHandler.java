@@ -16,10 +16,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.zip.GZIPInputStream;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpException;
@@ -40,6 +36,7 @@ import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.conn.ssl.AllowAllHostnameVerifier;
 import org.apache.http.conn.ssl.SSLSocketFactory;
+import org.apache.http.conn.ssl.TrustStrategy;
 import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.SingleClientConnManager;
@@ -99,6 +96,7 @@ public class HttpProtocolHandler implements IProtocolHandler {
         return new IOException(msg, e);
     }
 
+    @Override
     public HttpStatusCode handleRequest(
         Uri url,
         String login,
@@ -198,31 +196,19 @@ public class HttpProtocolHandler implements IProtocolHandler {
 
     private void initSSL() throws IOException {
         try {
-            SSLContext sslContext = SSLContext.getInstance("TLS");
-            X509TrustManager trustManager = new X509TrustManager() {
-
-                public void checkClientTrusted(
+            X509HostnameVerifier hostnameVerifier = new AllowAllHostnameVerifier();
+            TrustStrategy trustStrategy = new TrustStrategy() {
+                @Override
+                public boolean isTrusted(
                     X509Certificate[] chain,
                     String authType) throws CertificateException {
-                    System.out.println("checkClientTrusted");
-                }
-
-                public void checkServerTrusted(
-                    X509Certificate[] chain,
-                    String authType) throws CertificateException {
-                    System.out.println("checkServerTrusted");
-                }
-
-                public X509Certificate[] getAcceptedIssuers() {
-                    System.out.println("getAcceptedIssuers");
-                    return null;
+                    // TODO Auto-generated method stub
+                    return true;
                 }
             };
-            sslContext.init(null, new TrustManager[] { trustManager }, null);
-            X509HostnameVerifier hostnameVerifier = new AllowAllHostnameVerifier();
             // hostnameVerifier = new BrowserCompatHostnameVerifier();
             SSLSocketFactory ssf = new SSLSocketFactory(
-                sslContext,
+                trustStrategy,
                 hostnameVerifier);
             Scheme http = new Scheme(
                 "http",
@@ -244,6 +230,7 @@ public class HttpProtocolHandler implements IProtocolHandler {
         DefaultHttpClient httpclient = new DefaultHttpClient(connectionManager);
         httpclient.removeRequestInterceptorByClass(RequestUserAgent.class);
         httpclient.addRequestInterceptor(new HttpRequestInterceptor() {
+            @Override
             public void process(HttpRequest request, HttpContext context)
                 throws HttpException,
                 IOException {
