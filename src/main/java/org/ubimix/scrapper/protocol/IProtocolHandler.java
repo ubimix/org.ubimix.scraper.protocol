@@ -1,7 +1,7 @@
-package org.webreformatter.scrapper.protocol;
+package org.ubimix.scrapper.protocol;
 
-import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.resources.IWrfResource;
+import org.ubimix.commons.uri.Uri;
+import org.ubimix.resources.IWrfResource;
 
 public interface IProtocolHandler {
 

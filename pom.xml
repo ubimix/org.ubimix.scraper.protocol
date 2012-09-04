@@ -3,49 +3,46 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.webreformatter.commons</groupId>
-        <artifactId>org.webreformatter.commons.poms</artifactId>
-        <version>1.2.0</version>
+        <groupId>org.ubimix.poms</groupId>
+        <artifactId>org.ubimix.poms.bundle</artifactId>
+        <version>1.2.1</version>
     </parent>
-    <properties>
-        <commons.version>1.1.5</commons.version>
-    </properties>
-    <groupId>org.webreformatter.scrapper</groupId>
-    <artifactId>org.webreformatter.scrapper.protocol</artifactId>
-    <version>1.2.0</version>
+    <groupId>org.ubimix.scrapper</groupId>
+    <artifactId>org.ubimix.scrapper.protocol</artifactId>
+    <version>1.2.1</version>
     <packaging>bundle</packaging>
     <name>${project.artifactId}</name>
     <dependencies>
         <dependency>
-            <groupId>org.webreformatter.scrapper</groupId>
-            <artifactId>org.webreformatter.scrapper.resources</artifactId>
-            <version>1.2.0</version>
+            <groupId>org.ubimix.scrapper</groupId>
+            <artifactId>org.ubimix.scrapper.resources</artifactId>
+            <version>1.2.1</version>
         </dependency>
         <dependency>
-            <groupId>org.webreformatter.commons</groupId>
-            <artifactId>org.webreformatter.commons.uri</artifactId>
-            <version>${commons.version}</version>
+            <groupId>org.ubimix.commons</groupId>
+            <artifactId>org.ubimix.commons.uri</artifactId>
+            <version>1.2.1</version>
         </dependency>
         <dependency>
-            <groupId>org.webreformatter.commons</groupId>
-            <artifactId>org.webreformatter.commons.adapters</artifactId>
-            <version>${commons.version}</version>
+            <groupId>org.ubimix.commons</groupId>
+            <artifactId>org.ubimix.commons.adapters</artifactId>
+            <version>1.2.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.webreformatter.commons</groupId>
-            <artifactId>org.webreformatter.commons.xml</artifactId>
-            <version>${commons.version}</version>
+            <groupId>org.ubimix.commons</groupId>
+            <artifactId>org.ubimix.commons.xml</artifactId>
+            <version>1.2.1</version>
         </dependency>
         <dependency>
-            <groupId>org.webreformatter.commons</groupId>
-            <artifactId>org.webreformatter.commons.utils</artifactId>
-            <version>${commons.version}</version>
+            <groupId>org.ubimix.commons</groupId>
+            <artifactId>org.ubimix.commons.utils</artifactId>
+            <version>1.2.1</version>
         </dependency>
         <dependency>
-            <groupId>org.webreformatter.libs</groupId>
-            <artifactId>org.apache.commons.httpclient</artifactId>
-            <version>4.1.1</version>
+            <groupId>org.ubimix.libs</groupId>
+            <artifactId>org.ubimix.libs.httpclient</artifactId>
+            <version>4.2.1</version>
         </dependency>
     </dependencies>
 </project>

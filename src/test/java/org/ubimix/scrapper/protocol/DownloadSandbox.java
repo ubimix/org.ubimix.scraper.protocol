@@ -1,20 +1,20 @@
 /**
  * 
  */
-package org.webreformatter.scrapper.protocol;
+package org.ubimix.scrapper.protocol;
 
 import java.io.File;
 import java.io.IOException;
 
-import org.webreformatter.commons.adapters.CompositeAdapterFactory;
-import org.webreformatter.commons.uri.Path;
-import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.commons.uri.UriToPath;
-import org.webreformatter.resources.IWrfResource;
-import org.webreformatter.resources.IWrfResourceProvider;
-import org.webreformatter.resources.adapters.string.StringAdapter;
-import org.webreformatter.resources.impl.WrfRepositoryUtils;
-import org.webreformatter.resources.impl.WrfResourceRepository;
+import org.ubimix.commons.adapters.CompositeAdapterFactory;
+import org.ubimix.commons.uri.Path;
+import org.ubimix.commons.uri.Uri;
+import org.ubimix.commons.uri.UriToPath;
+import org.ubimix.resources.IWrfResource;
+import org.ubimix.resources.IWrfResourceProvider;
+import org.ubimix.resources.adapters.string.StringAdapter;
+import org.ubimix.resources.impl.WrfRepositoryUtils;
+import org.ubimix.resources.impl.WrfResourceRepository;
 
 /**
  * @author kotelnikov

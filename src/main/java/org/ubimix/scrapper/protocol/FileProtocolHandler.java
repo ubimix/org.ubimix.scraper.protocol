@@ -1,17 +1,17 @@
 /**
  * 
  */
-package org.webreformatter.scrapper.protocol;
+package org.ubimix.scrapper.protocol;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import org.webreformatter.commons.uri.Path;
-import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.resources.IContentAdapter;
-import org.webreformatter.resources.IWrfResource;
-import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
+import org.ubimix.commons.uri.Path;
+import org.ubimix.commons.uri.Uri;
+import org.ubimix.resources.IContentAdapter;
+import org.ubimix.resources.IWrfResource;
+import org.ubimix.resources.adapters.cache.CachedResourceAdapter;
 
 /**
  * @author kotelnikov
@@ -44,9 +44,9 @@ public class FileProtocolHandler implements IProtocolHandler {
     }
 
     /**
-     * @see org.webreformatter.scrapper.protocol.IProtocolHandler#handleRequest(org.webreformatter.commons.uri.Uri,
+     * @see org.ubimix.scrapper.protocol.IProtocolHandler#handleRequest(org.ubimix.commons.uri.Uri,
      *      java.lang.String, java.lang.String,
-     *      org.webreformatter.resources.IWrfResource)
+     *      org.ubimix.resources.IWrfResource)
      */
     public HttpStatusCode handleRequest(
         Uri uri,

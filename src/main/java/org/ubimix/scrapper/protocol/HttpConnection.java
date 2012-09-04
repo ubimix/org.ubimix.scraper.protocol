@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.webreformatter.scrapper.protocol;
+package org.ubimix.scrapper.protocol;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -46,7 +46,7 @@ import org.apache.http.params.HttpProtocolParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.protocol.RequestUserAgent;
-import org.webreformatter.commons.uri.Uri;
+import org.ubimix.commons.uri.Uri;
 
 /**
  * @author kotelnikov

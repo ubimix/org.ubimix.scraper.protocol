@@ -1,9 +1,9 @@
-package org.webreformatter.scrapper.protocol;
+package org.ubimix.scrapper.protocol;
 
-import org.webreformatter.commons.uri.Path;
-import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.commons.uri.UriToPath;
-import org.webreformatter.commons.uri.path.PathManager;
+import org.ubimix.commons.uri.Path;
+import org.ubimix.commons.uri.Uri;
+import org.ubimix.commons.uri.UriToPath;
+import org.ubimix.commons.uri.path.PathManager;
 
 /**
  * This object is used to get credentials(login/password) corresponding to an

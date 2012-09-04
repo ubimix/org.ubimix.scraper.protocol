@@ -1,13 +1,13 @@
-package org.webreformatter.scrapper.protocol;
+package org.ubimix.scrapper.protocol;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.webreformatter.commons.uri.Path;
-import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.resources.IContentAdapter;
-import org.webreformatter.resources.IWrfResource;
-import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
+import org.ubimix.commons.uri.Path;
+import org.ubimix.commons.uri.Uri;
+import org.ubimix.resources.IContentAdapter;
+import org.ubimix.resources.IWrfResource;
+import org.ubimix.resources.adapters.cache.CachedResourceAdapter;
 
 public class ClasspathProtocolHandler implements IProtocolHandler {
 

@@ -1,13 +1,13 @@
 /**
  * 
  */
-package org.webreformatter.scrapper.protocol;
+package org.ubimix.scrapper.protocol;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.resources.IWrfResource;
+import org.ubimix.commons.uri.Uri;
+import org.ubimix.resources.IWrfResource;
 
 /**
  * @author kotelnikov

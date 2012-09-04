@@ -1,16 +1,16 @@
-package org.webreformatter.scrapper.protocol;
+package org.ubimix.scrapper.protocol;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.webreformatter.commons.uri.Path;
-import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.commons.uri.UriToPath;
-import org.webreformatter.resources.IContentAdapter;
-import org.webreformatter.resources.IWrfRepository;
-import org.webreformatter.resources.IWrfResource;
-import org.webreformatter.resources.IWrfResourceProvider;
-import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
+import org.ubimix.commons.uri.Path;
+import org.ubimix.commons.uri.Uri;
+import org.ubimix.commons.uri.UriToPath;
+import org.ubimix.resources.IContentAdapter;
+import org.ubimix.resources.IWrfRepository;
+import org.ubimix.resources.IWrfResource;
+import org.ubimix.resources.IWrfResourceProvider;
+import org.ubimix.resources.adapters.cache.CachedResourceAdapter;
 
 /**
  * This implementation of the {@link IProtocolHandler} loads the content from a

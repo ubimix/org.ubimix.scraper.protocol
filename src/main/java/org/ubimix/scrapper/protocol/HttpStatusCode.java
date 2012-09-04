@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.webreformatter.scrapper.protocol;
+package org.ubimix.scrapper.protocol;
 
 import java.util.HashMap;
 import java.util.Map;
