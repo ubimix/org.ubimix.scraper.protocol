@@ -1,4 +1,4 @@
-package org.ubimix.scrapper.protocol;
+package org.ubimix.scraper.protocol;
 
 import org.ubimix.commons.uri.Uri;
 import org.ubimix.resources.IWrfResource;

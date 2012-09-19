@@ -1,7 +1,11 @@
-package org.ubimix.scrapper.protocol;
+/**
+ * 
+ */
+package org.ubimix.scraper.protocol;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 import org.ubimix.commons.uri.Path;
 import org.ubimix.commons.uri.Uri;
@@ -9,17 +13,22 @@ import org.ubimix.resources.IContentAdapter;
 import org.ubimix.resources.IWrfResource;
 import org.ubimix.resources.adapters.cache.CachedResourceAdapter;
 
-public class ClasspathProtocolHandler implements IProtocolHandler {
+/**
+ * @author kotelnikov
+ */
+public class FileProtocolHandler implements IProtocolHandler {
 
-    private HttpStatusCode copyClasspathResource(
-        Path path,
-        IWrfResource resource) {
+    /**
+     * 
+     */
+    public FileProtocolHandler() {
+    }
+
+    private HttpStatusCode copyFileResource(File file, IWrfResource resource) {
         try {
             IContentAdapter contentAdapter = resource
                 .getAdapter(IContentAdapter.class);
-            path = path.getBuilder().makeAbsolutePath().build();
-            InputStream input = getClass().getResourceAsStream(
-                path.toString());
+            FileInputStream input = new FileInputStream(file);
             try {
                 contentAdapter.writeContent(input);
             } finally {
@@ -34,12 +43,26 @@ public class ClasspathProtocolHandler implements IProtocolHandler {
         }
     }
 
+    /**
+     * @see org.ubimix.scraper.protocol.IProtocolHandler#handleRequest(org.ubimix.commons.uri.Uri,
+     *      java.lang.String, java.lang.String,
+     *      org.ubimix.resources.IWrfResource)
+     */
     public HttpStatusCode handleRequest(
         Uri uri,
         String login,
         String password,
         IWrfResource resource) {
         Path path = uri.getPath();
-        return copyClasspathResource(path, resource);
+        File file = new File(path.toString());
+        HttpStatusCode result = HttpStatusCode.STATUS_404;
+        if (file.exists()) {
+            if (!file.isFile()) {
+                result = HttpStatusCode.STATUS_404;
+            } else {
+                result = copyFileResource(file, resource);
+            }
+        }
+        return result;
     }
 }

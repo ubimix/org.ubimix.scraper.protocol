@@ -1,4 +1,4 @@
-package org.ubimix.scrapper.protocol;
+package org.ubimix.scraper.protocol;
 
 import java.io.IOException;
 import java.io.InputStream;

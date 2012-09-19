@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.ubimix.scrapper.protocol;
+package org.ubimix.scraper.protocol;
 
 /**
  * @author kotelnikov

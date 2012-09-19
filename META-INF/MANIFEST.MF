@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ClassPath: .
-Bundle-SymbolicName: org.ubimix.scrapper.protocol
-Bundle-Name: org.ubimix.scrapper.protocol
+Bundle-SymbolicName: org.ubimix.scraper.protocol
+Bundle-Name: org.ubimix.scraper.protocol
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Version: 1.2.1
 Bundle-ManifestVersion: 2
@@ -55,4 +55,4 @@ Import-Package: javax.net.ssl;resolution:=optional,
  org.ubimix.resources;version="1.2.1",
  org.ubimix.resources.adapters;version="1.2.1",
  org.ubimix.resources.adapters.cache;version="1.2.1"
-Export-Package: org.ubimix.scrapper.protocol;version="1.2.1"
+Export-Package: org.ubimix.scraper.protocol;version="1.2.1"

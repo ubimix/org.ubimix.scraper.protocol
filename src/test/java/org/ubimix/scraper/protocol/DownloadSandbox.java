@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.ubimix.scrapper.protocol;
+package org.ubimix.scraper.protocol;
 
 import java.io.File;
 import java.io.IOException;
